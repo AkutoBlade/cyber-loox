@@ -53,24 +53,25 @@ router.get('/users/:user_id/cart', (req, res) => {
   //Delete items from the specific user's cart
   router.delete('/users/:user_id/cart', bodyParser.json(), (req, res) => {
     let bd = req.body
-    let sql = `UPDATE users SET cart = null WHERE user_id = ${req.params.id}`
+    let sql = `UPDATE users SET cart = null WHERE user_id = ${req.params.user_id}`
     db.query(sql, (err, results) => {
       if (err) throw err
       res.send('Cart is empty')
     })
   });
 
-  router.delete('/users/:id/cart/:cartId', (req,res)=>{
+   //Delete specific item
+  router.delete('/users/:user_id/cart/:cart_id', (req,res)=>{
     const delSingleCartId = `
         SELECT cart FROM users
-        WHERE user_id = ${req.params.id}
+        WHERE user_id = ${req.params.user_id}
     `
     db.query(delSingleCartId, (err,results)=>{
         if(err) throw err;
         if(results.length > 0){
             if(results[0].cart != null){
                 const result = JSON.parse(results[0].cart).filter((cart)=>{
-                    return cart.cart_id != req.params.cartId;
+                    return cart.cart_id != req.params.cart_id;
                 })
                 result.forEach((cart,i) => {
                     cart.cart_id = i + 1
@@ -78,7 +79,7 @@ router.get('/users/:user_id/cart', (req, res) => {
                 const query = `
                     UPDATE users
                     SET cart = ?
-                    WHERE user_id = ${req.params.id}
+                    WHERE user_id = ${req.params.user_id}
                 `
                 db.query(query, [JSON.stringify(result)], (err,results)=>{
                     if(err) throw err;
