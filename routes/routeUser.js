@@ -65,12 +65,12 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
             expiresIn: "365d"
         }, (err, token) => {
             if (err) throw err;
-            // res.send(token)
-            // res.json({
-            //   msg: results,
-            //   token
-            // })
-            res.status(200).send("Logged in");
+            res.send(token)
+            res.json({
+              msg: results,
+              token
+            })
+            // res.status(200).send("Logged in");
         });
         }
       }
