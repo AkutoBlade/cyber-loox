@@ -77,7 +77,7 @@ router.put('/products', (req, res) => {
 });
 
 // Delete product
-router.delete('/clinic/:id', (req, res) => {
+router.delete('/products/:id', (req, res) => {
   // Query
   const strQry =
       `
