@@ -18,6 +18,14 @@ app.get('/:type', (req, res)=> {
   res.status(404).sendFile(__dirname +'/views/404.html');
   });
 
+  app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    next();
+});
+
 app.use(cors({
     origin: ['http://127.0.0.1:8080 ', 'http://localhost:8080'],
     credentials: true
