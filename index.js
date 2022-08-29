@@ -34,6 +34,7 @@ app.get('/:type', (req, res)=> {
   app.use(
     router,
     express.json(),
+    cors(),
     express.urlencoded({
       extended: true,
     })
