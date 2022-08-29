@@ -39,7 +39,7 @@ router.get('/products', (req, res) => {
       if (err) throw err;
       res.json({
           status: 200,
-          results: results
+          products: results
       })
   })
 });
