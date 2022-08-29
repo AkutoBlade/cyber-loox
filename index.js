@@ -21,7 +21,7 @@ app.use(cart)
 //     next();
 //   });
 app.use(cors({
-    origin: ['http://192.168.8.193:8080/ ', 'http://localhost:8080'],
+    origin:  'http://localhost:8080',
     credentials: true
   })); 
 
