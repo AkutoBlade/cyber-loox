@@ -26,10 +26,10 @@ app.get('/:type', (req, res)=> {
     next();
 });
 
-// app.use(cors({
-//     origin: ['http://127.0.0.1:8080 ', 'http://localhost:8080'],
-//     credentials: true
-//   })); 
+app.use(cors({
+    origin: ['http://127.0.0.1:8080 ', 'http://localhost:8080'],
+    credentials: true
+  })); 
   
   app.use(
     router,
