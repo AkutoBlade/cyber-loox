@@ -13,17 +13,18 @@ app.set("views",app.use(express.static('views')))
 app.use(products);
 app.use(users);
 app.use(cart)
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader(Access-Control-Allow-Origin, *);
+//     res.setHeader(Access-Control-Allow-Headers, '*');
+//     res.setHeader(Access-Control-Allow-Methods, '*');
+//     res.setHeader(Access-Control-Allow-Credentials, 'true');
+//     next();
+//   });
 app.use(cors({
     origin: ['http://192.168.8.193:8080/ ', 'http://localhost:8080'],
     credentials: true
   })); 
+
 app.use(
     router,
     express.json(),
