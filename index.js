@@ -8,6 +8,23 @@ const users = require("./routes/routeUser");
 const cart = require("./routes/routeCart")
 const PORT = process.env.PORT || 3000;
 
+
+app.use(
+  router,
+  express.json(),
+  cors(),
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 // app.use(express.static('views'));
 app.set("views",app.use(express.static('views')))
 app.use(products);
@@ -16,22 +33,7 @@ app.use(cart)
 
 
 
-app.use(
-    router,
-    express.json(),
-    cors(),
-    express.urlencoded({
-      extended: true,
-    })
-  );
 
-  app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    next();
-  });
 
   app.get('/:type', (req, res)=> {
     res.status(404).sendFile(__dirname +'/views/404.html');
