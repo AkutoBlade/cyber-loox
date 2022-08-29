@@ -13,17 +13,8 @@ app.set("views",app.use(express.static('views')))
 app.use(products);
 app.use(users);
 app.use(cart)
-// app.use((req, res, next) => {
-//     res.setHeader(Access-Control-Allow-Origin, *);
-//     res.setHeader(Access-Control-Allow-Headers, '*');
-//     res.setHeader(Access-Control-Allow-Methods, '*');
-//     res.setHeader(Access-Control-Allow-Credentials, 'true');
-//     next();
-//   });
-app.use(cors({
-    origin:  'http://localhost:8080',
-    credentials: true
-  })); 
+
+
 
 app.use(
     router,
@@ -33,6 +24,14 @@ app.use(
       extended: true,
     })
   );
+
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+  });
 
   app.get('/:type', (req, res)=> {
     res.status(404).sendFile(__dirname +'/views/404.html');
