@@ -17,6 +17,18 @@ app.use((req, res, next) => {
 });
 
 app.use(
+  cors({
+    origin: ["http://192.168.9.148:8080/", "http://localhost:8080/"],
+    credentials: true,
+  })
+);
+{
+  credentials: "include";
+}
+
+
+
+app.use(
   router,
   express.json(),
   cors(),
