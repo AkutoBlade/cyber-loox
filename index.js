@@ -9,11 +9,14 @@ const cart = require("./routes/routeCart")
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.header("mode", "no-cors");
-  res.header("Access-Control-Allow-Origin","*");
-  res.header("Access-Control-Allow-Methods", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header("Access-Control-Allow-*", "*");
+  const allowedOrigins = ["http://192.168.8.193:8080/", "http://localhost:8080/", "http://127.0.0.1:8080"]
+  const origin = req.headers.origin
+  if(allowedOrigins.includes(origin)){
+  res.setHeader("Access-Control-Allow-Origin",origin);
+  }
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-*", "*");
   next();
 });
 
