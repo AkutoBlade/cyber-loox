@@ -9,15 +9,18 @@ const cart = require("./routes/routeCart")
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader("mode", "no-cors");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-*", "*");
   next();
 });
 
 app.use(
   cors({
+    mode: 'no-cors',
     origin: ["http://192.168.9.148:8080/", "http://localhost:8080/"],
     credentials: true,
   })
@@ -31,7 +34,6 @@ app.use(
 app.use(
   router,
   express.json(),
-  cors(),
   express.urlencoded({
     extended: true,
   })
