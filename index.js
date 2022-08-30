@@ -33,8 +33,6 @@ app.use(cart)
 
 
 
-
-
   app.get('/:type', (req, res)=> {
     res.status(404).sendFile(__dirname +'/views/404.html');
     });
