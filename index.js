@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.setHeader("mode", "no-cors");
-  res.setHeader("Access-Control-Allow-Origin","http://localhost:8080/");
+  res.setHeader("Access-Control-Allow-Origin","*");
   // res.setHeader("Access-Control-Allow-Headers", "*");
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
