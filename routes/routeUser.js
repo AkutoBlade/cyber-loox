@@ -14,7 +14,13 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-*", "*");
   next();
 });
-
+app.use(
+  cors({
+    mode: 'no-cors',
+    origin: ["http://localhost:8080/", "http://127.0.0.1:8080"],
+    credentials: true,
+  })
+);
 //Users
 router.post('/users/register', bodyParser.json(), async (req, res) => {
     const emails = `SELECT email FROM users WHERE ?`;
