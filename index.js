@@ -6,10 +6,6 @@ const router = express.Router();
 const products = require("./routes/routeProduct");
 const users = require("./routes/routeUser");
 const cart = require("./routes/routeCart");
-const db = require("../config/dbconn");
-const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
