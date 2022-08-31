@@ -28,7 +28,11 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
     }
     let sql = `INSERT INTO users (user_fullname, email, user_password, user_role, phone_number , join_date)VALUES (?, ?, ?, ?, ?, ?);`
     db.query(sql, [bd.user_fullname, bd.email, bd.user_password, bd.user_role, bd.phone_number, bd.join_date], (err, results) => {
-      if (err) throw err
+      if (err){
+          return {
+            msg: "The email already exist"
+          }
+      }
       else {
         res.redirect('/users/login')
       }
