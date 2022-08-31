@@ -16,7 +16,9 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
   
     db.query(emails, details, async (err, results) =>{
       if(results.length > 0){
-     res.send("Email Exist");
+     res.json({
+      msg:"The email already exist"
+    });
     console.log(results.length)
       }else{
       let bd = req.body;
