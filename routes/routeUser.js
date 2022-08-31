@@ -68,7 +68,7 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
             if (err) throw err;
             res.json({
               msg: results,
-              token
+              token: token
             })
             // res.status(200).send("Logged in");
         });
