@@ -52,11 +52,15 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
     db.query(sql,email.email, async (err,results) => {
       if(err) throw err
       if(results.length === 0){
-        res.send(`No email found`)
+        res.json({
+          msg: "Email does not exist"
+        })
       }else{
         const isMatch = await bcrypt.compare(req.body.user_password, results[0].user_password);
         if(!isMatch){
-          res.send('Password is Incorrect')
+          res.json({
+            msg: "Incorrect Password"
+          })
         }else{
           const payload = {
             user: {
