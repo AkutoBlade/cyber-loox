@@ -5,9 +5,20 @@ const app = express();
 const router = express.Router();
 const products = require("./routes/routeProduct");
 const users = require("./routes/routeUser");
-const cart = require("./routes/routeCart")
+const cart = require("./routes/routeCart");
+const db = require("../config/dbconn");
+const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const PORT = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin","*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-*", "*");
+  next();
+});
 
 // app.use(
 //   cors({

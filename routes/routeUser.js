@@ -47,6 +47,9 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
   
   //Login users
   router.post('/users/login',bodyParser.json(),(req,res) => {
+    res.header('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, PATCH, DELETE');
+     res.header('Access-Control-Allow-Headers','Origin,Content-Type,X-Requested-With,Accept,Authorization');
     let sql = `SELECT * FROM users WHERE email LIKE ?`
     let email = {
       email : req.body.email
