@@ -21,7 +21,7 @@ router.get('/users/:user_id/cart', (req, res) => {
   })
   
   //Add items to the user's specific cart
-  router.post('/users/:user_id/cart', bodyParser.json(), (req, res) => {
+  router.post('/users/:id/cart', bodyParser.json(), (req, res) => {
     let bd = req.body
     let sql = `SELECT cart FROM users WHERE user_id = ${req.params.id}`
     db.query(sql, (err, results) => {
