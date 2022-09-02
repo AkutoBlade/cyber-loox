@@ -46,7 +46,9 @@ router.get('/users/:user_id/cart', (req, res) => {
         let sql1 = `UPDATE users SET cart = ? WHERE user_id = ${req.params.id}`
         db.query(sql1, JSON.stringify(cart), (err, results) => {
           if (err) throw results
-          res.send(`Product added to your cart`)
+          res.json({
+            results: results
+          })
         })
       }
     })
