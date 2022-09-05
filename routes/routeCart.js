@@ -65,12 +65,14 @@ router.post('/users/:id/cart', bodyParser.json(), (req, res) => {
 });
 
 //Delete items from the specific user's cart
-router.delete('/users/:user_id/cart', bodyParser.json(), (req, res) => {
+router.delete('/users/:id/cart', bodyParser.json(), (req, res) => {
   let bd = req.body
-  let sql = `UPDATE users SET cart = null WHERE user_id = ${req.params.user_id}`
+  let sql = `UPDATE users SET cart = null WHERE user_id = ${req.params.id}`
   db.query(sql, (err, results) => {
     if (err) throw err
-    res.send('Cart is empty')
+    res.json({
+      results: `${req.params.id}`
+    })
   })
 });
 
