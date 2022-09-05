@@ -123,14 +123,14 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
   });
   
   //update Or edit user
-  router.put('/users/:user_id',bodyParser.json(),(req, res) => {
+  router.put('/users/:id',bodyParser.json(),(req, res) => {
     const bd = req.body;
    bd.user_password =  bcrypt.hashSync(bd.user_password, 10)
     // Query
     const strQry =
         `UPDATE users
      SET user_fullname = ?, email = ?, phone_number = ?, user_password = ?
-     WHERE user_id = ${req.params.user_id}`;
+     WHERE user_id = ${req.params.id}`;
      
      
   
@@ -141,14 +141,14 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
   });
   
   //Delete a specific user
-  router.delete('/users/:user_id', (req, res) => {
+  router.delete('/users/:id', (req, res) => {
     // Query
     const strQry =
         `
     DELETE FROM users
     WHERE user_id = ?;
     `;
-    db.query(strQry, [req.params.user_id], (err, data, fields) => {
+    db.query(strQry, [req.params.id], (err, data, fields) => {
         if (err) throw err;
         res.send(`${data.affectedRows} row was affected`);
     })
