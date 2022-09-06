@@ -63,15 +63,15 @@ router.get('/products/:product_id', (req, res) => {
   })
 });
 // Update product
-router.put('/products', (req, res) => {
+router.put('/products/:id', (req, res) => {
   const bd = req.body;
   // Query
   const strQry =
       `UPDATE products
-   SET ?
-   WHERE id = ?`;
+   SET title = ?, category = ?, product_description = ?, img = ?, price = ?
+   WHERE product_id = ${req.params.id}`;
 
-  db.query(strQry, [bd.id], (err, data) => {
+  db.query(strQry, [bd.title, bd.category, bd.product_description, bd.img, bd.price], (err, data) => {
       if (err) throw err;
       res.send(`number of affected record/s: ${data.affectedRows}`);
   })
@@ -83,9 +83,9 @@ router.delete('/products/:id', (req, res) => {
   const strQry =
       `
   DELETE FROM products 
-  WHERE id = ?;
+  WHERE product_id = ${req.params.id};
   `;
-  db.query(strQry, [req.params.id], (err, data, fields) => {
+  db.query(strQry, (err, data, fields) => {
       if (err) throw err;
       res.send(`${data.affectedRows} row was affected`);
   })
