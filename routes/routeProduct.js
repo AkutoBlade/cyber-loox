@@ -22,7 +22,9 @@
                  [bd.title, bd.category, bd.img, bd.product_description, bd.price],
                  (err, results) => {
                      if (err) throw err
-                     res.send(`number of affected row/s: ${results.affectedRows}`);
+                     res.json({
+                        msg:`Added Item`
+                    });
                  })
          } catch (e) {
              console.log(`Create a new product: ${e.message}`);
