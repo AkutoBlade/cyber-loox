@@ -27,7 +27,7 @@
                     });
                  })
          } catch (e) {
-             console.log(`Create a new product: ${e.message}`);
+             console.log(`Create a new product);
          }
      });
 
