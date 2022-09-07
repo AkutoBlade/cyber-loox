@@ -27,7 +27,7 @@
                     });
                  })
          } catch (e) {
-             console.log(`Create a new product);
+             console.log(`Create a new product`);
          }
      });
 
