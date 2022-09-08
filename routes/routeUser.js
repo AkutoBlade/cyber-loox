@@ -130,13 +130,15 @@ router.post('/users/register', bodyParser.json(), async (req, res) => {
     const strQry =
         `UPDATE users
      SET user_fullname = ?, email = ?, phone_number = ?, user_password = ?
-     WHERE user_id = ${req.params.id}`;
+     WHERE user_id = ?`;
      
      
   
-    db.query(strQry, [bd.user_fullname, bd.email, bd.phone_number,  bd.user_password], (err, data) => {
+    db.query(strQry, [bd.user_fullname, bd.email, bd.phone_number,  bd.user_password, bd.user_id], (err, data) => {
         if (err) throw err;
-        res.send(`number of affected record/s: ${data.affectedRows}`);
+        res.json({
+          msg:`Updated User`
+        });
     })
   });
   
