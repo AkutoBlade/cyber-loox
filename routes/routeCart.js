@@ -52,7 +52,7 @@ router.post('/users/:id/cart', bodyParser.json(), (req, res) => {
           if (err) throw err
           res.json({
             status: 200,
-            msg: "Done"
+            results: results
           })
         })
       } else {
