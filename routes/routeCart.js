@@ -77,7 +77,7 @@ router.delete('/users/:id/cart', bodyParser.json(), (req, res) => {
 });
 
 //Delete specific item
-router.delete('/users/:user_id/cart/:cart_id', (req, res) => {
+router.delete('/users/:user_id/cart/:product_id', (req, res) => {
   const delSingleCartId = `
         SELECT cart FROM users
         WHERE user_id = ${req.params.user_id}
@@ -87,10 +87,10 @@ router.delete('/users/:user_id/cart/:cart_id', (req, res) => {
     if (results.length > 0) {
       if (results[0].cart != null) {
         const result = JSON.parse(results[0].cart).filter((cart) => {
-          return cart.cart_id != req.params.cart_id;
+          return cart.product_id != req.params.product_id;
         })
         result.forEach((cart, i) => {
-          cart.cart_id = i + 1
+          cart.product_id = i + 1
         });
         const query = `
                     UPDATE users
