@@ -95,7 +95,7 @@ router.delete('/users/:user_id/cart/:cart_id', (req, res) => {
         const query = `
                     UPDATE users
                     SET cart = ?
-                    WHERE user_id = ${req.params.user_id}
+                    WHERE user_id = ${req.params.cart_id}
                 `
         db.query(query, [JSON.stringify(result)], (err, results) => {
           if (err) throw err;
