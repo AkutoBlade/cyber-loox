@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
 
 //Get specific user's cart
 router.get('/users/:id/cart', (req, res) => {
-  let sql = `SELECT cart FROM users WHERE user_id = ${req.params.user_id}`
+  let sql = `SELECT cart FROM users WHERE user_id = ${req.params.id}`
   db.query(sql, (err, results) => {
     if (err) throw err
     res.json({
