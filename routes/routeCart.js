@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 
 
 //Get specific user's cart
-router.get('/users/:user_id/cart', (req, res) => {
+router.get('/users/:id/cart', (req, res) => {
   let sql = `SELECT cart FROM users WHERE user_id = ${req.params.user_id}`
   db.query(sql, (err, results) => {
     if (err) throw err
@@ -24,7 +24,7 @@ router.get('/users/:user_id/cart', (req, res) => {
 router.post('/users/:id/cart', bodyParser.json(), (req, res) => {
   try {
     let bd = req.body
-    let sql = `SELECT cart FROM users WHERE user_id = ${req.params.id}`;
+    let sql = `SELECT cart FROM users WHERE user_id = ${req.params.id};`;
     db.query(sql, (err, results) => {
       if (err) throw err;
       if (results.length > 0) {
